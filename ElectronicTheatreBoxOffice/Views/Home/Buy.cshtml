@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Заказ билета</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформления заказа</h3>
+        <form method="post" action="">
+            <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
+            <table>
+                <tr>
+                    <td><p>Введите свой номер </p></td>
+                    <td><input type="text" name="UserID" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите координаты места :</p></td>
+                    <td>
+                        <input type="text" name="RowPlace" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
