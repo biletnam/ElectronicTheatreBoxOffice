@@ -1,4 +1,21 @@
 ﻿body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    background: url(/img/background.jpg);
+}
+
+.mainmenu {
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+}
+
+.mainmenu > li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    padding: 3px; /* Поля вокруг текста */
+}
+
+body {
     font-size: 13px;
     font-family: Verdana, Arial, Helvetica, Sans-Serif;
     background-color: #f7f7fa;

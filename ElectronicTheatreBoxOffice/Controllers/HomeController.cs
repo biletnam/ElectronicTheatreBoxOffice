@@ -39,5 +39,63 @@ namespace ElectronicTheatreBoxOffice.Controllers
             db.SaveChanges();
             return "Спасибо," + seating.UserID + ", за покупку!";
         }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult SignUp()
+        {
+            ViewBag.Message = "Your registration page.";
+
+            return View();
+        }
+
+        public ActionResult SignIn()
+        {
+            ViewBag.Message = "Your authorization page.";
+
+            return View();
+        }
+
+        public ActionResult Seances()
+        {
+            ViewBag.Message = "Your seances page.";
+
+            return View();
+        }
+
+        public ActionResult Seances2()
+        {
+            DateTime mydate = Convert.ToDateTime(Request.Params["mydate1"]);
+            if (mydate.Date == Convert.ToDateTime("01.01.0001 0:00:00")) { mydate = DateTime.Now; }
+            List<Seance> seances = new List<Seance>();
+            foreach (var s in db.Seances)
+            {
+                if (s.dt.Date == mydate.Date)
+                {
+                    seances.Add(s);
+                }
+            }
+            ViewBag.Seances = seances;
+            return View();
+        }
+
+        public ActionResult Images()
+        {
+            ViewBag.Message = "Your images page.";
+
+            return View();
+        }
     }
 }

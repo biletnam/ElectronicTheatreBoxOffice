@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <form>
+            <input type="date" name="mydate1">
+            <input type="submit" onclick='Seances2()' value="Показать" />
+        </form>
+        <h3>Сеансы</h3>
+        <table>
+            <tr>
+                <td><p>Дата</p></td>
+                <td><p>Время</p></td>
+                <td><p>Название</p></td>
+                <td><p>Жанр</p></td>
+                <td><p>Цена</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in ViewBag.Seances)
+            {
+                //if (b.dt.Date == DateTime.Now.Date)
+                {
+                <tr>
+                    <td><p>@b.dt</p></td>
+                    <td><p>@b.Name</p></td>
+                    <td><p>@b.Genre</p></td>
+                    <td><p>@b.Price</p></td>
+                    <td><p><a href="/Home/Buy/@b.Id">Заказать</a></p></td>
+                </tr>
+                }
+            }
+        </table>
+    </div>

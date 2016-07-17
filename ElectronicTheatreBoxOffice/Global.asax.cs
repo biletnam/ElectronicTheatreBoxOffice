@@ -14,7 +14,7 @@ namespace ElectronicTheatreBoxOffice
     {
         protected void Application_Start()
         {
-            //Database.Delete("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\\ElectronicTheatreBoxOffice.mdf';Integrated Security=True");
+            Database.Delete("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\\ElectronicTheatreBoxOffice.mdf';Integrated Security=True");
             Database.SetInitializer(new SeanceDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
