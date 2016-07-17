@@ -68,14 +68,14 @@ namespace ElectronicTheatreBoxOffice.Controllers
             return View();
         }
 
-        public ActionResult Seances()
+        public ActionResult Seances2()
         {
             ViewBag.Message = "Your seances page.";
 
             return View();
         }
 
-        public ActionResult Seances2()
+        public ActionResult Seances()
         {
             DateTime mydate = Convert.ToDateTime(Request.Params["mydate1"]);
             if (mydate.Date == Convert.ToDateTime("01.01.0001 0:00:00")) { mydate = DateTime.Now; }

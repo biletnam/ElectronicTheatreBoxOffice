@@ -3,22 +3,47 @@
 }
 
     <div>
-        <h3>Форма оформления заказа</h3>
+        <ul class="mainmenu">
+            <li><a href="/Home/Index">Главная</a></li>
+            <li><a href="/Home/Seances">Сейчас в Кино</a></li>
+            <li><a href="/Home/Images">Галерея изображений</a></li>
+            <li><a href="/Home/SignUp">Регистрация</a></li>
+            <li><a href="/Home/SignIn">Авторизация</a></li>
+        </ul>
+        <hr />
         <form method="post" action="">
-            <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
-            <table>
-                <tr>
-                    <td><p>Введите свой номер </p></td>
-                    <td><input type="text" name="UserID" /> </td>
-                </tr>
-                <tr>
-                    <td><p>Введите координаты места :</p></td>
-                    <td>
-                        <input type="text" name="RowPlace" />
-                    </td>
-                </tr>
-                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
-            </table>
+            <div>
+                <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
+                <table>
+                    <tr>
+                        <td><p>Введите свой номер телефона</p></td>
+                        <td><input type="text" name="UserID" /> </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td><p>Место</p></td>
+                        @for (int k = 1; k < 31; k++)
+                        {
+                            <td><p>@k</p></td>
+                        }
+                    </tr>
+                    @for (int i = 1; i < 11; i++)
+                    {
+                        <tr>
+                            <td>Ряд @i</td>
+                            @for (int j = 0; j < 30; j++)
+                            {
+                                <td><input type="checkbox" /></td>
+                            }
+                        </tr>
+                        @*<input type="text" name="RowPlace" />*@
+                    }
+                    <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+                </table>
+            </div>
         </form>
     </div>
 

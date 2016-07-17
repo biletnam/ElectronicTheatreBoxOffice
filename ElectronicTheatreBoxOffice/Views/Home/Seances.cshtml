@@ -1,20 +1,41 @@
-﻿
-<ul class="mainmenu">
-    <li><a href="/Home/Index">Главная</a></li>
-    <li><a href="/Home/Seances"><strong>Сейчас в Кино</strong></a></li>
-    <li><a href="/Home/Images">Галерея изображений</a></li>
-    <li><a href="/Home/SignUp">Регистрация</a></li>
-    <li><a href="/Home/SignIn">Авторизация</a></li>
-</ul>
-<hr />
-<table border="0">
-    <caption><h3>Сейчас в Кино</h3></caption>
-    <th text-align="center">Дата сеанса</th>
-    <th text-align="center">Название</th>
-    <th text-align="center">Время</th>
-    <tr>
-        <td width="1000" align="center">15 марта,сегодня</td>
-        <td width="1000" align="center">Смешарики.Легенда о золотом драконе <br />Зверополис<br />Дивергент. Глава 3 </td>
-        <td width="1000" align="center">12:00   17:00<br />15:00   19:00<br />21:00</td>
-    </tr>
-</table>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div>
+        <ul class="mainmenu">
+            <li><a href="/Home/Index">Главная</a></li>
+            <li><a href="/Home/Seances"><strong>Сейчас в Кино</strong></a></li>
+            <li><a href="/Home/Images">Галерея изображений</a></li>
+            <li><a href="/Home/SignUp">Регистрация</a></li>
+            <li><a href="/Home/SignIn">Авторизация</a></li>
+        </ul>
+        <hr />
+        <form>
+            <input type="date" name="mydate1">
+            <input type="submit" onclick='Seances()' value="Показать" />
+        </form>
+        <h3>Сеансы</h3>
+        <table>
+            <tr>
+                <td><p>Дата и время</p></td>
+                <td><p>Название</p></td>
+                <td><p>Жанр</p></td>
+                <td><p>Цена</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in ViewBag.Seances)
+            {
+                //if (b.dt.Date == DateTime.Now.Date)
+                {
+                <tr>
+                    <td><p>@b.dt</p></td>
+                    <td><p>@b.Name</p></td>
+                    <td><p>@b.Genre</p></td>
+                    <td><p>@b.Price</p></td>
+                    <td><p><a href="/Home/Buy/@b.Id">Билеты</a></p></td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
