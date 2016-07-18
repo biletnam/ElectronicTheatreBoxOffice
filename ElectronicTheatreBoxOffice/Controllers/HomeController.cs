@@ -26,6 +26,17 @@ namespace ElectronicTheatreBoxOffice.Controllers
         public ActionResult Buy(int id)
         {
             ViewBag.SeanceId = id;
+            List<int> seatings = new List<int>();
+            seatings.Add(0);
+            foreach (var s in db.Seatings)
+            {
+                if (s.SeanceID == id)
+                {
+                    int i = s.Place + (s.Row - 1) * 30;
+                    seatings.Add(i);
+                }
+            }
+            ViewBag.seatings = seatings;
             return View();
         }
         [HttpPost]

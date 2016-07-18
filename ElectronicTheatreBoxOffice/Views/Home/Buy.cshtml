@@ -12,34 +12,54 @@
         </ul>
         <hr />
         <form method="post" action="">
+            <div>
                 <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
                 <table>
                     <tr>
-                        <td><p>Введите свой номер телефона</p></td>
-                        <td><input type="text" name="UserID" /> </td>
+                        <td><p>Ваш телефон в формате 375YYXXXXXXX</p></td>
+                        <td><input type="tel" name="UserID" pattern="375[0-9]{2}\-[0-9]{7}" /> </td>
                     </tr>
                 </table>
+            </div>
+            <div>
                 <table>
                     <tr>
                         <td><p>Место</p></td>
                         @for (int k = 1; k < 31; k++)
                         {
-                            <td><p>@k</p></td>
+                            <td>@k</td>
                         }
                     </tr>
-                    @for (int i = 1; i < 11; i++)
-                    {
+                        @for (int i = 1; i < 11; i++)
+                        {
                         <tr>
                             <td>Ряд @i</td>
                             @for (int j = 0; j < 30; j++)
                             {
-                                <td><input type="checkbox" /></td>
+                                bool flag = false;
+                                foreach (var z in ViewBag.seatings)
+                                {
+                                    if (z == j + 1 + (i - 1) * 30)
+                                    {
+                                        flag = true;
+                                    }
+                                }
+                                if (flag)
+                                {
+                                    <td><input type="checkbox" checked="checked" disabled /></td>
+                                    flag = false;
+                                }
+                                else
+                                {
+                                    <td><input type="checkbox" /></td>
+                                }
                             }
                         </tr>
-                        @*<input type="text" name="RowPlace" />*@
-                    }
-                    <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+                        }
+                        
+                    <tr><td><input type="submit" value="Заказать" /> </td><td></td></tr>
                 </table>
+            </div>
         </form>
     </div>
 
