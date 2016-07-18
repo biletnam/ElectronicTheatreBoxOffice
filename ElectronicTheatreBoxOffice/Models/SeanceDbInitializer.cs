@@ -28,6 +28,11 @@ namespace ElectronicTheatreBoxOffice.Models
             db.Seatings.Add(new Seating { SeanceID = 1, UserID = 1, Row = 5, Place = 16 });
             db.Seatings.Add(new Seating { SeanceID = 1, UserID = 1, Row = 6, Place = 15 });
             db.Seatings.Add(new Seating { SeanceID = 1, UserID = 1, Row = 6, Place = 17 });
+            db.Seatings.Add(new Seating { SeanceID = 5, UserID = 1, Row = 1, Place = 1 });
+            db.Seatings.Add(new Seating { SeanceID = 5, UserID = 1, Row = 1, Place = 1 });
+            db.Seatings.Add(new Seating { SeanceID = 5, UserID = 1, Row = 2, Place = 2 });
+            db.Seatings.Add(new Seating { SeanceID = 5, UserID = 1, Row = 2, Place = 3 });
+            db.Seatings.Add(new Seating { SeanceID = 5, UserID = 1, Row = 1, Place = 4 });
             base.Seed(db);
         }
     }
