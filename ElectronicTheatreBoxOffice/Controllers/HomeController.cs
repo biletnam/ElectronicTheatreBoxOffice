@@ -10,10 +10,10 @@ namespace ElectronicTheatreBoxOffice.Controllers
     public class HomeController : Controller
     {
         // создаем контекст данных
-        SeanceContext db = new SeanceContext();
 
         public ActionResult Index()
         {
+            SeanceContext db = new SeanceContext();
             // получаем из бд все объекты Seance
             IEnumerable<Seance> seances = db.Seances;
             // передаем все объекты в динамическое свойство Seances в ViewBag
@@ -25,6 +25,7 @@ namespace ElectronicTheatreBoxOffice.Controllers
         [HttpGet]
         public ActionResult Buy(int id)
         {
+            SeanceContext db = new SeanceContext();
             ViewBag.SeanceId = id;
             List<int> seatings = new List<int>();
             seatings.Add(0);
@@ -37,18 +38,14 @@ namespace ElectronicTheatreBoxOffice.Controllers
                 }
             }
             ViewBag.seatings = seatings;
-            return View();
+            return View(db.Seatings);
         }
         [HttpPost]
-        public string Buy(Seating seating)
+        public ActionResult Buy()
         {
-            seating.UserID = seating.UserID;
-            seating.Row = seating.Row;
-            // добавляем информацию о покупке в базу данных
-            db.Seatings.Add(seating);
-            // сохраняем в бд все изменения
-            db.SaveChanges();
-            return "Спасибо," + seating.UserID + ", за покупку!";
+            SeanceContext db = new SeanceContext();
+
+            return RedirectToAction("Seances");
         }
 
         public ActionResult About()
@@ -72,10 +69,13 @@ namespace ElectronicTheatreBoxOffice.Controllers
             return View();
         }
 
-        public ActionResult SignIn()
+        public ActionResult SignIn(LoginModel model)
         {
-            ViewBag.Message = "Your authorization page.";
-
+            if (model.Login == "admin" & model.Password == "admin")
+            {
+                AppUser.role = "admin";
+                return View("Index");
+            }
             return View();
         }
 
@@ -88,6 +88,7 @@ namespace ElectronicTheatreBoxOffice.Controllers
 
         public ActionResult Seances()
         {
+            SeanceContext db = new SeanceContext();
             DateTime mydate = Convert.ToDateTime(Request.Params["mydate1"]);
             if (mydate.Date == Convert.ToDateTime("01.01.0001 0:00:00")) { mydate = DateTime.Now; }
             List<Seance> seances = new List<Seance>();
@@ -99,14 +100,17 @@ namespace ElectronicTheatreBoxOffice.Controllers
                 }
             }
             ViewBag.Seances = seances;
+            if (AppUser.role == "admin") { return View("Seances2"); }
             return View();
+
         }
 
-        public ActionResult Images()
+        public ActionResult Delete(int id)
         {
-            ViewBag.Message = "Your images page.";
-
-            return View();
+            SeanceContext db = new SeanceContext();
+            db.Seances.Remove(db.Seances.Where(s => s.Id == id).SingleOrDefault());
+            db.SaveChanges();
+            return RedirectToAction("Seances");
         }
     }
 }

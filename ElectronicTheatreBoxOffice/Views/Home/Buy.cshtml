@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ElectronicTheatreBoxOffice.Models.SeatingsModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,17 +12,17 @@
             <li><a href="/Home/SignIn">Авторизация</a></li>
         </ul>
         <hr />
-        <form method="post" action="">
-            <div>
+        @using (Html.BeginForm())
+        {
                 <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
                 <table>
                     <tr>
                         <td><p>Ваш телефон в формате 375YYXXXXXXX</p></td>
-                        <td><input type="tel" name="UserID" pattern="375[0-9]{2}\-[0-9]{7}" /> </td>
+                        <td><input type="text" name="UserID"/> </td>
                     </tr>
                 </table>
-            </div>
-            <div>
+            @*</div>
+            <div>*@
                 <table>
                     <tr>
                         <td><p>Место</p></td>
@@ -46,20 +47,17 @@
                                 }
                                 if (flag)
                                 {
-                                    <td><input type="checkbox" checked="checked" disabled /></td>
+                                    <td><input type="checkbox" name="seats" checked="checked" disabled /></td>
                                     flag = false;
                                 }
                                 else
                                 {
-                                    <td><input type="checkbox" /></td>
+                                    <td><input type="checkbox" name="seats"/></td>
                                 }
                             }
                         </tr>
-                        }
-                        
-                    <tr><td><input type="submit" value="Заказать" /> </td><td></td></tr>
+                        }    
+                    <tr><td><input type="submit" value="Заказать"/> </td><td>@ViewBag.SeanceId</td></tr>              
                 </table>
-            </div>
-        </form>
+        }
     </div>
-

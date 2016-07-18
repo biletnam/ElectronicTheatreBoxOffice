@@ -10,6 +10,6 @@ namespace ElectronicTheatreBoxOffice.Models
     {
         public DbSet<Seance> Seances { get; set; }
         public DbSet<Seating> Seatings { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<AppUser> Users { get; set; }
     }
 }

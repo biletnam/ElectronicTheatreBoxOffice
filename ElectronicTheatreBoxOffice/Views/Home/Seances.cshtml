@@ -27,15 +27,16 @@
             @foreach (var b in ViewBag.Seances)
             {
                 //if (b.dt.Date == DateTime.Now.Date)
-                {
+                
                 <tr>
                     <td><p>@b.dt</p></td>
                     <td><p>@b.Name</p></td>
                     <td><p>@b.Genre</p></td>
                     <td><p>@b.Price</p></td>
                     <td><p><a href="/Home/Buy/@b.Id">Билеты</a></p></td>
+
                 </tr>
-                }
+                
             }
         </table>
     </div>
