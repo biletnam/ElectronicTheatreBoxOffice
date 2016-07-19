@@ -48,41 +48,14 @@ namespace ElectronicTheatreBoxOffice.Controllers
             return RedirectToAction("Seances");
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult SignUp()
-        {
-            ViewBag.Message = "Your registration page.";
-
-            return View();
-        }
-
         public ActionResult SignIn(LoginModel model)
         {
+            if (AppUser.role == "admin") { AppUser.role = null; return View("SignIn2"); }
             if (model.Login == "admin" & model.Password == "admin")
             {
                 AppUser.role = "admin";
-                return View("Index");
+                return RedirectToAction("Seances");
             }
-            return View();
-        }
-
-        public ActionResult Seances2()
-        {
-            ViewBag.Message = "Your seances page.";
-
             return View();
         }
 
@@ -102,13 +75,27 @@ namespace ElectronicTheatreBoxOffice.Controllers
             ViewBag.Seances = seances;
             if (AppUser.role == "admin") { return View("Seances2"); }
             return View();
-
         }
 
         public ActionResult Delete(int id)
         {
             SeanceContext db = new SeanceContext();
             db.Seances.Remove(db.Seances.Where(s => s.Id == id).SingleOrDefault());
+            db.SaveChanges();
+            return RedirectToAction("Seances");
+        }
+
+        [HttpGet]
+        public ActionResult AddSeance()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddSeance(Seance s)
+        {
+            SeanceContext db = new SeanceContext();
+            db.Seances.Add(new Seance { dt = s.dt, Name = s.Name, Genre = s.Genre, Price = s.Price });
             db.SaveChanges();
             return RedirectToAction("Seances");
         }

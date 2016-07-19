@@ -2,9 +2,7 @@
 <ul class="mainmenu">
     <li><a href="/Home/Index">Главная</a></li>
     <li><a href="/Home/Seances">Сейчас в Кино</a></li>
-    <li><a href="/Home/Images">Галерея изображений</a></li>
-    <li><a href="/Home/SignUp">Регистрация</a></li>
-    <li><a href="/Home/SignIn"><strong>Авторизация</strong></a></li>
+    <li><a href="/Home/SignIn"><strong>Администрирование</strong></a></li>
 </ul>
 <hr />
 <table border="0">
@@ -20,7 +18,7 @@
     <tr>
         <td>Пароль</td>
         <td>
-            @Html.TextBoxFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
         </td>
     </tr>
     <tr>

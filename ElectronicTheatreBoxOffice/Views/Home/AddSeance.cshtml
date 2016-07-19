@@ -1,0 +1,42 @@
+﻿@model ElectronicTheatreBoxOffice.Models.Seance
+<ul class="mainmenu">
+    <li><a href="/Home/Index">Главная</a></li>
+    <li><a href="/Home/Seances">Сейчас в Кино</a></li>
+    <li><a href="/Home/SignIn">Администрирование</a></li>
+</ul>
+<hr />
+<table border="0">
+    <caption><h3>Добавление сеанса</h3></caption>
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>Дата и время</td>
+            <td>
+                @Html.TextBoxFor(m => m.dt)
+            </td>
+        </tr>
+        <tr>
+            <td>Название</td>
+            <td>
+                @Html.TextBoxFor(m => m.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>Жанр</td>
+            <td>
+                @Html.TextBoxFor(m => m.Genre)
+            </td>
+        </tr>
+        <tr>
+            <td>Цена</td>
+            <td>
+                @Html.TextBoxFors(m => m.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input style="width:100Px" type="submit" value="Добавить">
+            </td>
+        </tr>
+    }
+</table>

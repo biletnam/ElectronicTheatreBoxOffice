@@ -1,0 +1,18 @@
+﻿@model ElectronicTheatreBoxOffice.Models.LoginModel
+<ul class="mainmenu">
+    <li><a href="/Home/Index">Главная</a></li>
+    <li><a href="/Home/Seances">Сейчас в Кино</a></li>
+    <li><a href="/Home/SignIn"><strong>Администрирование</strong></a></li>
+</ul>
+<hr />
+<table border="0">
+    <caption><h3>Вы уже авторизированы</h3></caption>
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>
+                <input style="width:100Px" type="submit" value="Выход">
+            </td>
+        </tr>
+    }
+</table>
