@@ -1,4 +1,4 @@
-﻿@model ElectronicTheatreBoxOffice.Models.Seance
+﻿@model ElectronicTheatreBoxOffice.Models.Seating
 <ul class="mainmenu">
     <li><a href="/Home/Index">Главная</a></li>
     <li><a href="/Home/Seances">Сейчас в Кино</a></li>
@@ -9,33 +9,28 @@
     <caption><h3>Добавление сеанса</h3></caption>
     @using (Html.BeginForm())
     {
-        <tr>
-            <td>Дата и время</td>
+        @Html.HiddenFor(m => m.SeanceID,new { @Value = ViewBag.ID})
+        @*<tr>
+            <td>Ваш телефон в формате 375YYXXXXXXX</td>
             <td>
-                @Html.TextBoxFor(m => m.dt)
+                @Html.TextBoxFor(m => m.UserID)
+            </td>
+        </tr>*@
+        <tr>
+            <td>Ряд</td>
+            <td>
+                @Html.TextBoxFor(m => m.Row)
             </td>
         </tr>
         <tr>
-            <td>Название</td>
+            <td>Место</td>
             <td>
-                @Html.TextBoxFor(m => m.Name)
-            </td>
-        </tr>
-        <tr>
-            <td>Жанр</td>
-            <td>
-                @Html.TextBoxFor(m => m.Genre)
-            </td>
-        </tr>
-        <tr>
-            <td>Цена</td>
-            <td>
-                @Html.TextBoxFor(m => m.Price)
+                @Html.TextBoxFor(m => m.Place)
             </td>
         </tr>
         <tr>
             <td>
-                <input style="width:100Px" type="submit" value="Добавить">
+                <input style="width:100Px" type="submit" value="Заказать">
             </td>
         </tr>
     }

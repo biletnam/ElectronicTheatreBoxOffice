@@ -23,7 +23,7 @@ namespace ElectronicTheatreBoxOffice.Controllers
         }
 
         [HttpGet]
-        public ActionResult Buy(int id)
+        public ActionResult Buy(int id,string returnurl)
         {
             SeanceContext db = new SeanceContext();
             ViewBag.SeanceId = id;
@@ -40,12 +40,13 @@ namespace ElectronicTheatreBoxOffice.Controllers
             ViewBag.seatings = seatings;
             return View(db.Seatings);
         }
+
         [HttpPost]
-        public ActionResult Buy()
+        public ActionResult Buy(int id)
         {
             SeanceContext db = new SeanceContext();
 
-            return RedirectToAction("Seances");
+            return RedirectToAction("AddOrder", new { id });
         }
 
         public ActionResult SignIn(LoginModel model)
@@ -72,6 +73,7 @@ namespace ElectronicTheatreBoxOffice.Controllers
                     seances.Add(s);
                 }
             }
+            seances.Sort(new SeanceComparer());
             ViewBag.Seances = seances;
             if (AppUser.role == "admin") { return View("Seances2"); }
             return View();
@@ -98,6 +100,22 @@ namespace ElectronicTheatreBoxOffice.Controllers
             db.Seances.Add(new Seance { dt = s.dt, Name = s.Name, Genre = s.Genre, Price = s.Price });
             db.SaveChanges();
             return RedirectToAction("Seances");
+        }
+
+        public ActionResult AddOrder(int id)
+        {
+            SeanceContext db = new SeanceContext();
+            ViewBag.ID = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddOrder(Seating s)
+        {
+            SeanceContext db = new SeanceContext();
+            db.Seatings.Add(new Seating { SeanceID = s.SeanceID, UserID = 1, Row = s.Row, Place = s.Place });
+            db.SaveChanges();
+            return RedirectToAction("Buy", new { id = s.SeanceID });
         }
     }
 }

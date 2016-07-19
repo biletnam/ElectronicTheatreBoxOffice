@@ -1,4 +1,4 @@
-﻿@model ElectronicTheatreBoxOffice.Models.SeatingsModel
+﻿@*@model ElectronicTheatreBoxOffice.Models.SeatingsModel*@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -13,12 +13,12 @@
         @using (Html.BeginForm())
         {
                 <input type="hidden" value="@ViewBag.SeanceId" name="SeanceId" />
-                <table>
+                @*<table>
                     <tr>
                         <td><p>Ваш телефон в формате 375YYXXXXXXX</p></td>
                         <td><input type="text" name="UserID"/> </td>
                     </tr>
-                </table>
+                </table>*@
             @*</div>
             <div>*@
                 <table>
@@ -55,7 +55,7 @@
                             }
                         </tr>
                         }    
-                    <tr><td><input type="submit" value="Заказать"/> </td><td>@ViewBag.SeanceId</td></tr>              
+                    <tr><td><input type="submit" value="Заказать"/> </td></tr>              
                 </table>
         }
     </div>

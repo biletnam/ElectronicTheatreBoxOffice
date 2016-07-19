@@ -219,6 +219,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Seances.cshtml" />
     <Content Include="Views\Home\AddSeance.cshtml" />
+    <Content Include="Views\Home\AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
